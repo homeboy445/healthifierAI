@@ -1,0 +1,56 @@
+
+.main-medicinePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+}
+
+.medicine-daywise-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+    width: 100%;
+}
+
+.medicine-daywise-container-title {
+    font-size: 2rem;
+    text-align: left;
+    align-self: baseline;
+    margin-left: 5%;
+}
+
+.medicine-daywise-container-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.medicine-card {
+    background-color: #D9D9D9;
+    padding: 5%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.medicine-card > h3 {
+    text-align: center;
+}
+
+.medicine-card > p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.medicine-daywise-no-medicine {
+    font-size: 1.5rem;
+    background-color: #D9D9D9;
+    width: 80%;
+    border-radius: 5px;
+    padding: 5%;
+}

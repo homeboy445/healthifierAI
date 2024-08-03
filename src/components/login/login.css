@@ -1,0 +1,24 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border-radius: 10px;
+    padding: 5%;
+}
+
+.login-page > h1 {
+    margin-bottom: 10%;
+}
+
+.login-page > input {
+    margin-bottom: 5%;
+    width: 60%;
+    font-size: 1rem;
+}
