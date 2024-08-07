@@ -1,56 +1,152 @@
-
 .main-medicinePage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
 }
 
 .medicine-daywise-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10%;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  width: 100%;
 }
 
 .medicine-daywise-container-title {
-    font-size: 2rem;
-    text-align: left;
-    align-self: baseline;
-    margin-left: 5%;
+  font-size: 2rem;
+  text-align: left;
+  align-self: baseline;
+  margin-left: 5%;
 }
 
 .medicine-daywise-container-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    width: 90%;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 90%;
+  margin-top: 20px;
 }
 
 .medicine-card {
-    background-color: #D9D9D9;
-    padding: 5%;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #d9d9d9;
+  padding: 5%;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .medicine-card > h3 {
-    text-align: center;
+  text-align: center;
 }
 
 .medicine-card > p {
-    font-size: 1rem;
-    text-align: center;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .medicine-daywise-no-medicine {
-    font-size: 1.5rem;
-    background-color: #D9D9D9;
-    width: 80%;
-    border-radius: 5px;
-    padding: 5%;
+  font-size: 1.5rem;
+  background-color: #d9d9d9;
+  width: 80%;
+  border-radius: 5px;
+  padding: 2%;
+}
+
+.medicine-add-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.medicine-add-btn {
+  appearance: none;
+  background-color: #4baa97;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.medicine-add-btn:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.medicine-add-btn:hover {
+  background-color: #58f5d5;
+}
+
+.medicine-add-btn:focus {
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+  outline: none;
+}
+
+.medicine-add-btn:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: default;
+}
+
+.medicine-add-btn:active {
+  background-color: #65CCB8;
+  box-shadow: rgba(10, 39, 17, 0.2) 0 1px 0 inset;
+}
+
+.medicine-addition-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: #d9d9d9;
+  padding: 5%;
+  z-index: 111111;
+  width: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.medicine-addition-form > input {
+    width: 90%;
+    margin-bottom: 4%;
+    font-size: 1rem;
+}
+
+.medicine-day-time {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.medicine-addition-form-btns {
+    width: 90%;
+    display: flex;
+    padding: 2%;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.medicine-addition-form-btns > button {
+    margin-right: 1%;
 }

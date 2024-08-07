@@ -1,0 +1,23 @@
+
+.menu-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-color);
+  width: 20%;
+  border: 2px solid black;
+  z-index: 10000;
+  position: fixed;
+  left: 0;
+  min-height: 100vh;
+}
+
+.menu-item, .menu-item > a {
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+  cursor: pointer;
+}

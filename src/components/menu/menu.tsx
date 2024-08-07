@@ -1,18 +1,28 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ChatPage from "../chatPage/chatPage";
-import MedicinePage from "../medicinePage/medicinePage";
-import PlansPage from "../plansPage/plansPage";
+import { slide as MenuStore } from 'react-burger-menu';
+import "./menu.css";
+import { Link } from 'react-router-dom';
+import { removeAuthTokens } from '../../utils/Auth';
 
 const Menu = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ChatPage />} />
-        <Route path="/medicine" element={<MedicinePage />} />
-        <Route path="/plans" element={<PlansPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+    return (
+        <div className='menu-main'>
+          <h2 className="menu-item">
+            <Link to="/">Home</Link>
+          </h2>
+          <h2 className="menu-item">
+            <Link to="/medicine">Medicine</Link>
+          </h2>
+          <h2 className="menu-item">
+            <Link to="/plans">Plans</Link>
+          </h2>
+          <h2 className="menu-item" onClick={() => {
+            removeAuthTokens();
+            window.location.href = "/";
+          }}>
+            Logout
+          </h2>
+        </div>
+      );
+}
 
 export default Menu;

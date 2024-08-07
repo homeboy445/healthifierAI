@@ -8,11 +8,13 @@ import {
   refreshAuthTokens,
 } from "./utils/Auth";
 import { SERVER_URL } from "./consts";
-import Menu from "./components/menu/menu";
+import Menu from "./components/menu/menuRouter";
 import Login from "./components/login/login";
 
 const App = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(!!getAuthTokens().accessToken);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(
+    !!getAuthTokens().accessToken
+  );
 
   const updateUserLoggedInState = (state: boolean) => {
     if (state) {
@@ -85,19 +87,17 @@ const App = () => {
   }, []);
 
   return (
-    <globalContext.Provider
-      value={{
-        request,
-        isLoggedIn: isUserLoggedIn,
-        updateLoggedInState: updateUserLoggedInState,
-      }}
-    >
-        {
-            isUserLoggedIn
-            ? <Menu />
-            : <Login />
-        }
-    </globalContext.Provider>
+    <div id="outer-container">
+      <globalContext.Provider
+        value={{
+          request,
+          isLoggedIn: isUserLoggedIn,
+          updateLoggedInState: updateUserLoggedInState,
+        }}
+      >
+        {isUserLoggedIn ? <Menu /> : <Login />}
+      </globalContext.Provider>
+    </div>
   );
 };
 

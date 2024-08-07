@@ -89,7 +89,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div style={{ position: "relative", height: "100vh" }}>
+    <div style={{ position: "relative", height: "100vh", width: "100%" }}>
       <MainContainer>
         <ChatContainer>
           <MessageList>
