@@ -30,7 +30,6 @@ const Login = () => {
         if (response.isError) {
           throw new Error("Error in logging in!");
         }
-        console.log("login response:", response.data);
         mainContext.updateLoggedInState(true);
         storeAuthTokens(response.data);
     })

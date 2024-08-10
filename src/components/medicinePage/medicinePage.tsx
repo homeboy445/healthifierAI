@@ -66,7 +66,9 @@ const MedicinePage = () => {
     setFormVisible(!formVisible);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setNewMedicine({ ...newMedicine, [name]: value });
   };
@@ -95,8 +97,11 @@ const MedicinePage = () => {
   };
 
   return (
-    <div style={{ width: '100%' }}>
-      <div className={`main-medicinePage ${formVisible ? "disabled" : ""}`}>
+    <div style={{ width: "100%" }}>
+      <div
+        className={`main-medicinePage ${formVisible ? "disabled" : ""}`}
+        style={{ overflow: formVisible ? "hidden" : "auto" }}
+      >
         {daysOfWeek.map((day, dayIndex) => {
           return (
             <div className="medicine-daywise-container" key={uuid()}>
@@ -121,7 +126,9 @@ const MedicinePage = () => {
             </div>
           );
         })}
-        <button className="medicine-add-btn" onClick={toggleForm}>Add New+</button>
+        <button className="medicine-add-btn" onClick={toggleForm}>
+          Add New+
+        </button>
       </div>
       {formVisible && (
         <div className="form-overlay">
@@ -178,8 +185,16 @@ const MedicinePage = () => {
               </div>
             </div>
             <div className="medicine-addition-form-btns">
-              <button type="submit" className="main-btn">Add</button>
-              <button type="button" className="main-cnl-btn" onClick={toggleForm}>Cancel</button>
+              <button type="submit" className="main-btn">
+                Add
+              </button>
+              <button
+                type="button"
+                className="main-cnl-btn"
+                onClick={toggleForm}
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>

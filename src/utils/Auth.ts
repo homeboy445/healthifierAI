@@ -41,8 +41,8 @@ const refreshAuthTokens = async (): Promise<1|0> => {
                 return 1;
             }
         } catch (e) {
-            // removeAuthTokens();
-            // window.location.href = "/";
+            removeAuthTokens();
+            window.location.href = "/";
         }
     }
     return 0;

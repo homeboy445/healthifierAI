@@ -1,16 +1,31 @@
 
+.menu-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  background: var(--primary-color);
+  z-index: 10000;
+  position: fixed;
+  left: 0;
+  min-height: 100vh;
+  width: 20%;
+}
+
+.menu-wrapper > h2 {
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  color: white;
+  text-shadow: 0.8px 0.8px 0.8px black;
+  background: linear-gradient(135deg, darkgreen, lightgreen);
+  cursor: pointer;
+}
+
 .menu-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--primary-color);
-  width: 20%;
-  border: 2px solid black;
-  z-index: 10000;
-  position: fixed;
-  left: 0;
-  min-height: 100vh;
+  width: 100%;
 }
 
 .menu-item, .menu-item > a {

@@ -63,8 +63,11 @@ class SocketManager {
         onReceive: (callback: (message: ChatData) => void) => {
             this.chatConfig.onRecieveCallback = callback;
         },
-        sendMessage: (message: ChatData) => {
-            this.socket.emit(channelStore.HEALTH_CHAT.RESPONSE, message);
+        sendMessage: (message: ChatData | {}, closeChat = false) => {
+          if (closeChat) {
+            return this.socket.emit(channelStore.HEALTH_CHAT.END_CHAT, {});
+          }
+          this.socket.emit(channelStore.HEALTH_CHAT.RESPONSE, message);
         }
     }
   }

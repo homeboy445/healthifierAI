@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
@@ -9,64 +9,22 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 import { ChatData } from "../../types/types";
 import socketManager from "../../utils/socketManager";
+import globalContext from "../../contexts/globalContext";
 
 const ChatPage = () => {
+  const globalContextHandler = useContext(globalContext);
   const chatHandlerRef = useRef({
     onReceive: (_callback: (message: ChatData) => void) => {},
     sendMessage: (_message: ChatData) => {},
     initialised: false,
   });
+  const [chatsFetched, updateChatsFetchedState] = useState<boolean>(false);
   const [messageList, updateMessageList] = useState<Array<ChatData>>([
     {
-      message: "Hello!",
-      ts: new Date().toISOString(),
-      sender: "user",
-    },
-    {
-      message: "How are you?",
+      message: "Hey! Let's chat! How are you holding up?",
       ts: new Date().toISOString(),
       sender: "ai",
-    },
-    {
-      message: "I'm doing great!",
-      ts: new Date().toISOString(),
-      sender: "user",
-    },
-    {
-      message: "What's up?",
-      ts: new Date().toISOString(),
-      sender: "user",
-    },
-    {
-      message: "Not much, just working on this project.",
-      ts: new Date().toISOString(),
-      sender: "ai",
-    },
-    {
-      message: "That sounds interesting.",
-      ts: new Date().toISOString(),
-      sender: "user",
-    },
-    {
-      message: "Yeah, it's been a lot of fun.",
-      ts: new Date().toISOString(),
-      sender: "ai",
-    },
-    {
-      message: "I'm glad to hear that.",
-      ts: new Date().toISOString(),
-      sender: "user",
-    },
-    {
-      message: "By the way, have you seen the latest episode of that show?",
-      ts: new Date().toISOString(),
-      sender: "user",
-    },
-    {
-      message: "No, I haven't. Is it any good?",
-      ts: new Date().toISOString(),
-      sender: "ai",
-    },
+    }
   ]);
   const [inputMessage, setInputMessage] = useState<string>("");
 
@@ -84,6 +42,24 @@ const ChatPage = () => {
       });
   }, [messageList]);
 
+  useEffect(() => {
+    if (!chatsFetched) {
+      globalContextHandler.request("chats/all", {})
+      .get()
+      .then((response) => {
+        console.log("response:", response);
+        updateMessageList([ ...messageList, ...response.data ]);
+      })
+      .catch((err) => {
+        console.log("error:", err);
+      });
+      updateChatsFetchedState(true);
+    }
+    return () => {
+      socketManager.chatHandler.sendMessage({}, true);
+    }
+  }, []);
+
   const handleMessageChange = (value: string) => {
     setInputMessage(value);
   };
@@ -93,7 +69,7 @@ const ChatPage = () => {
       <MainContainer>
         <ChatContainer>
           <MessageList>
-            {messageList.map((message, index) => (
+            {(messageList || []).map((message, index) => (
               <Message
                 key={index}
                 model={{

@@ -118,13 +118,15 @@
   align-items: center;
   margin-top: 5%;
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 45%;
+  left: 60%;
   background: #d9d9d9;
   padding: 5%;
   z-index: 111111;
-  width: 50%;
+  width: 45%;
   transform: translate(-50%, -50%);
+  border: 2px solid;
+  border-radius: 4px;
 }
 
 .medicine-addition-form > input {

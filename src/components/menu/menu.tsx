@@ -5,6 +5,8 @@ import { removeAuthTokens } from '../../utils/Auth';
 
 const Menu = () => {
     return (
+      <div className="menu-wrapper">
+        <h2>Healthifier</h2>
         <div className='menu-main'>
           <h2 className="menu-item">
             <Link to="/">Home</Link>
@@ -22,6 +24,7 @@ const Menu = () => {
             Logout
           </h2>
         </div>
+      </div>
       );
 }
 
