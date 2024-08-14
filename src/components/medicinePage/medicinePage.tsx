@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MedicineObject } from "../../types/types";
 import { v4 as uuid } from "uuid";
 import "./medicinePage.css";
+import globalContext from "../../contexts/globalContext";
 
 const MedicinePage = () => {
   const daysOfWeek = [
@@ -14,43 +15,12 @@ const MedicinePage = () => {
     "Saturday",
   ];
 
+  const globalContextHandler = useContext(globalContext);
   const [medicineList, updateMedicineList] = useState<{
     [dayNumber: number]: Array<MedicineObject>;
   }>({
-    0: [
-      {
-        name: "Paracetamol",
-        dosage: "500mg",
-        time: { hour: "", day: 0 },
-        usage: "For fever",
-      },
-      {
-        name: "Paracetamol",
-        dosage: "500mg",
-        time: { hour: "", day: 0 },
-        usage: "For fever",
-      },
-      {
-        name: "Paracetamol",
-        dosage: "500mg",
-        time: { hour: "", day: 0 },
-        usage: "For fever",
-      },
-      {
-        name: "Paracetamol",
-        dosage: "500mg",
-        time: { hour: "", day: 0 },
-        usage: "For fever",
-      },
-    ],
-    1: [
-      {
-        name: "Ibuprofen",
-        dosage: "200mg",
-        time: { hour: "", day: 1 },
-        usage: "For pain",
-      },
-    ],
+    0: [],
+    1: [],
   });
 
   const [formVisible, setFormVisible] = useState(false);
@@ -82,9 +52,17 @@ const MedicinePage = () => {
       time: { hour: newMedicine.time, day: dayNumber },
       usage: newMedicine.usage,
     };
-    updateMedicineList({
-      ...medicineList,
-      [dayNumber]: [...(medicineList[dayNumber] || []), newMedicineObject],
+    globalContextHandler.request("medicine/store")
+    .post({ ...newMedicineObject })
+    .then((response) => {
+      console.log("Medicine response -> ", response);
+      updateMedicineList({
+        ...medicineList,
+        [dayNumber]: [...(medicineList[dayNumber] || []), newMedicineObject],
+      });
+    })
+    .catch((e) => {
+      console.log("error in storing medicine -> ", e);
     });
     setNewMedicine({
       name: "",
@@ -95,6 +73,25 @@ const MedicinePage = () => {
     });
     toggleForm();
   };
+
+  useEffect(() => {
+    globalContextHandler.request("medicine/all")
+    .get()
+    .then((response) => {
+      console.log('medicine all response -> ', response);
+      if (response.data?.length > 0) {
+        const medicineStore = { ...medicineList };
+        response.data.forEach((item: MedicineObject) => {
+          medicineStore[item.time.day] = medicineStore[item.time.day] || [];
+          medicineStore[item.time.day].push(item);
+        });
+        updateMedicineList(medicineStore);
+      }
+    })
+    .catch((e) => {
+      console.log("error in getting medicines -> ", e);
+    });
+  }, []);
 
   return (
     <div style={{ width: "100%" }}>
