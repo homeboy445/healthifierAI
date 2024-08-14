@@ -17,13 +17,13 @@ const Menu = () => {
           <h2 className="menu-item">
             <Link to="/plans">Plans</Link>
           </h2>
-          <h2 className="menu-item" onClick={() => {
+        </div>
+          <h3 className="menu-item" onClick={() => {
             removeAuthTokens();
             window.location.href = "/";
           }}>
-            Logout
-          </h2>
-        </div>
+            logout
+          </h3>
       </div>
       );
 }

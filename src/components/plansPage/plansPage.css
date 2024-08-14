@@ -49,3 +49,9 @@
     align-items: center;
     padding: 5%;
 }
+
+.cpy-plan {
+    position: fixed;
+    right: 5px;
+    bottom: 25px;
+}

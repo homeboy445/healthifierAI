@@ -3,7 +3,6 @@ import DOMPurify from "dompurify";
 import { marked } from "marked";
 import "./plansPage.css";
 import globalContext from "../../contexts/globalContext";
-import { GenericObject } from "../../types/types";
 
 enum PlanType {
   MEAL = "meal",
@@ -26,8 +25,12 @@ const PlansPage = () => {
   const [planWiseData, updatePlanWiseData] = useState<{
     [key in PlanType]: string;
   }>({ [PlanType.MEAL]: "", [PlanType.WORKOUT]: "" });
+  const [planWiseRawData, updatePlanWiseRawData] = useState<{
+    [key in PlanType]: string;
+  }>({ [PlanType.MEAL]: "", [PlanType.WORKOUT]: "" });
   const [improvmentPromptHandler, updateImprovementPrompt] =
     useState<string>("");
+  const [copiedToClipBoardBtn, updateBtnTxt] = useState("Copy Plan To Clipboard");
 
   const updatePlan = (planType: PlanType) => {
     setCurrentPlan(planType);
@@ -73,6 +76,10 @@ const PlansPage = () => {
           updatePlanWiseData({
             ...planWiseData,
             [currentPlan]: DOMPurify.sanitize(await marked.parse(planDetails)),
+          });
+          updatePlanWiseRawData({
+            ...planWiseRawData,
+            [currentPlan]: planDetails
           });
         })
         .catch((err) => {
@@ -128,6 +135,22 @@ const PlansPage = () => {
           }}
         ></div>
       </div>
+      <button className="main-btn cpy-plan" onClick={() => {
+        const copyToClipboard = async () => {
+          try {
+            await navigator.clipboard.writeText(planWiseRawData[currentPlan]);
+            console.log('Text copied to clipboard');
+          } catch (err) {
+            console.error('Failed to copy text: ', err);
+          }
+        };
+        copyToClipboard().then(() => {
+          updateBtnTxt("Copied to Clipboard");
+          setTimeout(() => {
+            updateBtnTxt("Copy Plan To Clipboard");
+          }, 2000);
+        });
+      }}>{copiedToClipBoardBtn}</button>
     </div>
   );
 };
