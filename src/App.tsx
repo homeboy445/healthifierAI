@@ -77,7 +77,14 @@ const App = () => {
         axios.post(`${AuthURL}/${path}`, body, { headers: headersObj })
       );
     };
-    return { get, post };
+    const deleteMethod = (queryParams?: string) => {
+      return responseProcessor(
+        axios.delete(`${AuthURL}/${path}?${queryParams || ""}`, {
+          headers: headersObj,
+        })
+      );
+    };
+    return { get, post, delete: deleteMethod };
   };
 
   useEffect(() => {

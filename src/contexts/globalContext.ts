@@ -8,6 +8,7 @@ interface GlobalContextType {
     request: (path: string, headers?: GenericObject, options?: { avoidAuthHeaders: boolean }) => {
         get: () => requestResponseType;
         post: (body: GenericObject) => requestResponseType;
+        delete: (queryParams?: string) => requestResponseType;
     },
     isLoggedIn: boolean;
     updateLoggedInState: (state: boolean) => void;
@@ -17,7 +18,8 @@ const globalContext = createContext<GlobalContextType>({
     request: () => {
         return {
             get: async () => { return { data: null } },
-            post: async () => { return { data: null } }
+            post: async () => { return { data: null } },
+            delete: async () => { return { data: null } }
         };
     },
     isLoggedIn: false,

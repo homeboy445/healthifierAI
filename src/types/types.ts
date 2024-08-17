@@ -13,4 +13,5 @@ export interface MedicineObject {
     dosage: string;
     time: { day: number, hour: string };
     usage: string;
+    medicineId: string;
 }

@@ -16,15 +16,20 @@
 }
 
 .medicine-daywise-container-title {
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: left;
   align-self: baseline;
   margin-left: 5%;
+  margin-top: 2%;
+}
+
+.base-flex {
+  align-self: center;
 }
 
 .medicine-daywise-container-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   width: 90%;
   margin-top: 20px;
@@ -32,7 +37,7 @@
 
 .medicine-card {
   background-color: #d9d9d9;
-  padding: 5%;
+  padding: 2%;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -47,11 +52,12 @@
 }
 
 .medicine-daywise-no-medicine {
-  font-size: 1.5rem;
+  font-size: 1rem;
   background-color: #d9d9d9;
   width: 80%;
   border-radius: 5px;
   padding: 2%;
+  margin: 2%;
 }
 
 .medicine-add-btn {
@@ -151,4 +157,23 @@
 
 .medicine-addition-form-btns > button {
     margin-right: 1%;
+}
+
+#medicine-time {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-shadow: 0.3px 0.3px 0.3px black;
+}
+
+.medicine-card-store {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  margin-left: 5%;
+}
+
+.del-img {
+  width: 10%;
 }
