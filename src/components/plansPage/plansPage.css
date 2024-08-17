@@ -38,8 +38,9 @@
 
 .plan-type-container > h2 {
     padding: 1%;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
+    margin: 1%;
 }
 
 .plan-container {
@@ -54,4 +55,8 @@
     position: fixed;
     right: 5px;
     bottom: 25px;
+}
+
+#plan-info {
+    margin-bottom: 2%;
 }

@@ -116,7 +116,6 @@ const PlansPage = () => {
           placeholder="Add your comments here"
           value={improvmentPromptHandler}
           onChange={(e) => {
-            console.log("## ", e.target.value);
             updateImprovementPrompt(e.target.value);
           }}
         />
@@ -125,8 +124,8 @@ const PlansPage = () => {
         </button>
       </div>
       <div className="plan-container">
-        If you need to make any corrections/improvements, add your comments
-        above and regenerate the plan. {MESSAGE_STORE[currentPlan]}
+        <span id="plan-info">If you need to make any corrections/improvements, add your comments
+        above and regenerate the plan. {MESSAGE_STORE[currentPlan]}</span>
         <div
           dangerouslySetInnerHTML={{
             __html: planWiseData[currentPlan]?.trim()
